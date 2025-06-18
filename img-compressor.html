@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online tool to compress your images while maintaining quality. Reduce file size for JPG, PNG, and WebP images.">
-    <title>ImageCompressorPro | Free Online Image Optimization Tool</title>
+    <title>Image Compressor | ToolKitPro</title>
+    <meta name="description" content="Free online image compression tool. Reduce JPG, PNG, and WebP file sizes without losing quality.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -46,7 +46,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
@@ -89,7 +89,8 @@
         }
 
         .logo-text {
-            font-size: 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--dark);
             background: linear-gradient(to right, var(--primary), var(--secondary));
@@ -141,57 +142,57 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
+        /* Tool Header */
+        .tool-header {
+            padding: 3rem 0 2rem;
             text-align: center;
         }
 
-        .hero-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .hero-title {
+        .tool-title {
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 1rem;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-subtitle {
-            font-size: 1.125rem;
+        .tool-subtitle {
+            font-size: 1.25rem;
             color: var(--medium);
-            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* Compression Tool */
-        .tool-section {
-            padding: 2rem 0 4rem;
-        }
-
-        .tool-card {
+        /* Tool Container */
+        .tool-container {
             background-color: var(--white);
             border-radius: var(--rounded-lg);
             box-shadow: var(--shadow);
             overflow: hidden;
+            margin-bottom: 3rem;
         }
 
-        .tool-header {
+        .tool-card-header {
             padding: 1.5rem;
-            border-bottom: 1px solid var(--light);
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .tool-title {
-            font-size: 1.25rem;
+        .tool-card-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .tool-card-title {
             font-weight: 600;
             color: var(--dark);
         }
 
-        .tool-body {
+        .tool-card-body {
             padding: 2rem;
         }
 
@@ -371,15 +372,6 @@
             box-shadow: none;
         }
 
-        .btn-secondary {
-            background-color: var(--light);
-            color: var(--dark);
-        }
-
-        .btn-secondary:hover {
-            background-color: #e2e8f0;
-        }
-
         /* Results */
         .results {
             display: none;
@@ -393,10 +385,11 @@
         }
 
         .results-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--dark);
+            text-align: center;
         }
 
         .comparison {
@@ -511,72 +504,46 @@
             text-align: center;
         }
 
-        /* Ad Container */
-        .ad-container {
+        /* Related Tools */
+        .related-tools {
+            padding: 3rem 0;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-tool-card {
             background-color: var(--white);
             border-radius: var(--rounded);
             padding: 1.5rem;
-            text-align: center;
-            margin: 3rem 0;
             box-shadow: var(--shadow-sm);
-        }
-
-        .ad-label {
-            font-size: 0.75rem;
-            color: var(--medium);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Features */
-        .features-section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
+            transition: var(--transition);
+            text-decoration: none;
             color: var(--dark);
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: var(--white);
-            border-radius: var(--rounded);
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
+        .related-tool-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-md);
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
+        .related-tool-icon {
+            font-size: 1.75rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--dark);
         }
 
-        .feature-desc {
+        .related-tool-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-tool-desc {
             color: var(--medium);
-            line-height: 1.7;
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -607,6 +574,7 @@
         }
 
         .footer-logo-text {
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--white);
@@ -679,8 +647,12 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 2.25rem;
+            .tool-title {
+                font-size: 2rem;
+            }
+            
+            .tool-subtitle {
+                font-size: 1.1rem;
             }
         }
 
@@ -713,20 +685,16 @@
                 gap: 1rem;
             }
 
-            .hero {
-                padding: 3rem 0;
+            .tool-header {
+                padding: 2rem 0 1rem;
             }
 
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .tool-body {
+            .tool-card-body {
                 padding: 1.5rem;
             }
 
-            .settings {
-                grid-template-columns: 1fr;
+            .upload-area {
+                padding: 2rem 1rem;
             }
         }
 
@@ -735,32 +703,20 @@
                 padding: 0 1rem;
             }
 
-            .hero-title {
+            .tool-title {
                 font-size: 1.75rem;
             }
 
-            .hero-subtitle {
+            .tool-subtitle {
                 font-size: 1rem;
             }
 
-            .upload-area {
-                padding: 2rem 1rem;
+            .settings {
+                grid-template-columns: 1fr;
             }
 
-            .upload-text h3 {
-                font-size: 1.1rem;
-            }
-
-            .tool-header {
-                padding: 1rem;
-            }
-
-            .tool-title {
-                font-size: 1.1rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
+            .format-options {
+                justify-content: center;
             }
         }
     </style>
@@ -769,8 +725,8 @@
     <header>
         <div class="container header-container">
             <a href="/" class="logo">
-                <i class="fas fa-compress-alt logo-icon"></i>
-                <span class="logo-text">ImageCompressorPro</span>
+                <i class="fas fa-tools logo-icon"></i>
+                <span class="logo-text">ToolKitPro</span>
             </a>
             
             <button class="mobile-menu-btn" id="mobile-menu-btn">
@@ -780,226 +736,170 @@
             <nav id="main-nav">
                 <ul>
                     <li><a href="/">Home</a></li>
+                    <li><a href="/image-tools">Image Tools</a></li>
+                    <li><a href="/pdf-tools">PDF Tools</a></li>
                     <li><a href="/features">Features</a></li>
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
-                    <li><a href="/contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     
     <main>
-        <section class="hero">
-            <div class="container hero-content">
-                <h1 class="hero-title">Optimize Your Images in Seconds</h1>
-                <p class="hero-subtitle">Reduce image file size without sacrificing quality. Perfect for websites, social media, and storage optimization.</p>
+        <section class="tool-header">
+            <div class="container">
+                <h1 class="tool-title">Image Compressor</h1>
+                <p class="tool-subtitle">Reduce image file size without losing quality. Supports JPG, PNG, and WebP formats.</p>
             </div>
         </section>
         
-        <!-- Top Ad Banner -->
         <div class="container">
-            <div class="ad-container">
-                <div class="ad-label">Advertisement</div>
-                <!-- Replace with your Google AdSense code -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                     crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Top_Banner -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                     data-ad-slot="YOUR_AD_SLOT_ID"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
-        
-        <section class="tool-section">
-            <div class="container">
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <h2 class="tool-title">Image Compression Tool</h2>
-                    </div>
-                    
-                    <div class="tool-body">
-                        <div class="upload-area" id="upload-area">
-                            <div class="upload-icon">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                            </div>
-                            <div class="upload-text">
-                                <h3>Drag & Drop Your Image Here</h3>
-                                <p>or click to browse files (JPG, PNG, WebP)</p>
-                            </div>
-                            <input type="file" id="file-input" class="file-input" accept="image/*">
-                        </div>
-                        
-                        <div class="settings">
-                            <div class="setting-group">
-                                <label for="quality" class="setting-label">Compression Level</label>
-                                <div class="slider-container">
-                                    <input type="range" id="quality" class="slider" min="10" max="100" value="80" step="1">
-                                    <span class="slider-value" id="quality-value">80%</span>
-                                </div>
-                            </div>
-                            
-                            <div class="setting-group">
-                                <label class="setting-label">Output Format</label>
-                                <div class="format-options">
-                                    <div class="format-option">
-                                        <input type="radio" id="format-original" name="format" value="original" checked>
-                                        <label for="format-original">Original</label>
-                                    </div>
-                                    <div class="format-option">
-                                        <input type="radio" id="format-jpg" name="format" value="jpg">
-                                        <label for="format-jpg">JPG</label>
-                                    </div>
-                                    <div class="format-option">
-                                        <input type="radio" id="format-png" name="format" value="png">
-                                        <label for="format-png">PNG</label>
-                                    </div>
-                                    <div class="format-option">
-                                        <input type="radio" id="format-webp" name="format" value="webp">
-                                        <label for="format-webp">WebP</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button id="compress-btn" class="btn btn-primary" disabled>
-                            <i class="fas fa-compress-alt"></i> Compress Image
-                        </button>
-                        
-                        <div class="loader-container" id="loader-container">
-                            <div class="loader"></div>
-                            <p class="loading-text">Processing your image...</p>
-                        </div>
-                        
-                        <div class="error-message" id="error-message"></div>
-                        
-                        <div class="results" id="results">
-                            <h3 class="results-title">Compression Results</h3>
-                            
-                            <div class="comparison">
-                                <div class="image-card">
-                                    <div class="image-container">
-                                        <img id="original-img" src="" alt="Original image">
-                                    </div>
-                                    <div class="image-info">
-                                        <h4 class="image-title">Original Image</h4>
-                                        <div class="image-stats">
-                                            <span class="image-stat">
-                                                <i class="fas fa-weight-hanging"></i>
-                                                <span id="original-size">0</span> KB
-                                            </span>
-                                            <span class="image-stat">
-                                                <i class="fas fa-expand"></i>
-                                                <span id="original-dimensions">0×0</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="image-card">
-                                    <div class="image-container">
-                                        <img id="compressed-img" src="" alt="Compressed image">
-                                    </div>
-                                    <div class="image-info">
-                                        <h4 class="image-title">Compressed Image</h4>
-                                        <div class="image-stats">
-                                            <span class="image-stat">
-                                                <i class="fas fa-weight-hanging"></i>
-                                                <span id="compressed-size">0</span> KB
-                                            </span>
-                                            <span class="image-stat">
-                                                <i class="fas fa-percentage"></i>
-                                                <span id="reduction">0</span>% smaller
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="download-btn" id="download-btn">
-                                        <i class="fas fa-download"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="tool-container">
+                <div class="tool-card-header">
+                    <i class="fas fa-compress-arrows-alt tool-card-icon"></i>
+                    <h2 class="tool-card-title">Compress Your Image</h2>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Middle Ad Banner -->
-        <div class="container">
-            <div class="ad-container">
-                <div class="ad-label">Advertisement</div>
-                <!-- Replace with your Google AdSense code -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                     crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Mid_Banner -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                     data-ad-slot="YOUR_AD_SLOT_ID_2"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </div>
-        
-        <section class="features-section">
-            <div class="container">
-                <h2 class="section-title">Why Choose Our Image Compressor?</h2>
                 
-                <div class="features">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
+                <div class="tool-card-body">
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
                         </div>
-                        <h3 class="feature-title">Lightning Fast</h3>
-                        <p class="feature-desc">Our advanced algorithms compress images in seconds, saving you valuable time without compromising quality.</p>
+                        <div class="upload-text">
+                            <h3>Drag & Drop Your Image Here</h3>
+                            <p>or click to browse files (JPG, PNG, WebP)</p>
+                        </div>
+                        <input type="file" id="file-input" class="file-input" accept="image/*">
                     </div>
                     
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-lock"></i>
+                    <div class="settings">
+                        <div class="setting-group">
+                            <label for="quality" class="setting-label">Compression Level</label>
+                            <div class="slider-container">
+                                <input type="range" id="quality" class="slider" min="10" max="100" value="80" step="1">
+                                <span class="slider-value" id="quality-value">80%</span>
+                            </div>
                         </div>
-                        <h3 class="feature-title">100% Secure</h3>
-                        <p class="feature-desc">All processing happens in your browser. Your images never leave your device, ensuring complete privacy.</p>
+                        
+                        <div class="setting-group">
+                            <label class="setting-label">Output Format</label>
+                            <div class="format-options">
+                                <div class="format-option">
+                                    <input type="radio" id="format-original" name="format" value="original" checked>
+                                    <label for="format-original">Original</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="format-jpg" name="format" value="jpg">
+                                    <label for="format-jpg">JPG</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="format-png" name="format" value="png">
+                                    <label for="format-png">PNG</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="format-webp" name="format" value="webp">
+                                    <label for="format-webp">WebP</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-image"></i>
+                    <button id="compress-btn" class="btn btn-primary" disabled>
+                        <i class="fas fa-compress-alt"></i> Compress Image
+                    </button>
+                    
+                    <div class="loader-container" id="loader-container">
+                        <div class="loader"></div>
+                        <p class="loading-text">Processing your image...</p>
+                    </div>
+                    
+                    <div class="error-message" id="error-message"></div>
+                    
+                    <div class="results" id="results">
+                        <h3 class="results-title">Compression Results</h3>
+                        
+                        <div class="comparison">
+                            <div class="image-card">
+                                <div class="image-container">
+                                    <img id="original-img" src="" alt="Original image">
+                                </div>
+                                <div class="image-info">
+                                    <h4 class="image-title">Original Image</h4>
+                                    <div class="image-stats">
+                                        <span class="image-stat">
+                                            <i class="fas fa-weight-hanging"></i>
+                                            <span id="original-size">0</span> KB
+                                        </span>
+                                        <span class="image-stat">
+                                            <i class="fas fa-expand"></i>
+                                            <span id="original-dimensions">0×0</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="image-card">
+                                <div class="image-container">
+                                    <img id="compressed-img" src="" alt="Compressed image">
+                                </div>
+                                <div class="image-info">
+                                    <h4 class="image-title">Compressed Image</h4>
+                                    <div class="image-stats">
+                                        <span class="image-stat">
+                                            <i class="fas fa-weight-hanging"></i>
+                                            <span id="compressed-size">0</span> KB
+                                        </span>
+                                        <span class="image-stat">
+                                            <i class="fas fa-percentage"></i>
+                                            <span id="reduction">0</span>% smaller
+                                        </span>
+                                    </div>
+                                </div>
+                                <a href="#" class="download-btn" id="download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="feature-title">Multiple Formats</h3>
-                        <p class="feature-desc">Supports JPG, PNG, and WebP formats with adjustable compression settings for each file type.</p>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Bottom Ad Banner -->
-        <div class="container">
-            <div class="ad-container">
-                <div class="ad-label">Advertisement</div>
-                <!-- Replace with your Google AdSense code -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                     crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Bottom_Banner -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                     data-ad-slot="YOUR_AD_SLOT_ID_3"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
+            
+            <section class="related-tools">
+                <h2 class="section-title">More Image Tools</h2>
+                <div class="tools-grid">
+                    <a href="/image-converter" class="related-tool-card">
+                        <div class="related-tool-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="related-tool-title">Image Converter</h3>
+                        <p class="related-tool-desc">Convert between JPG, PNG, WebP and other formats</p>
+                    </a>
+                    
+                    <a href="/image-resizer" class="related-tool-card">
+                        <div class="related-tool-icon">
+                            <i class="fas fa-crop-alt"></i>
+                        </div>
+                        <h3 class="related-tool-title">Image Resizer</h3>
+                        <p class="related-tool-desc">Resize your images to any dimensions</p>
+                    </a>
+                    
+                    <a href="/background-remover" class="related-tool-card">
+                        <div class="related-tool-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3 class="related-tool-title">Background Remover</h3>
+                        <p class="related-tool-desc">Remove backgrounds from images automatically</p>
+                    </a>
+                    
+                    <a href="/image-editor" class="related-tool-card">
+                        <div class="related-tool-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="related-tool-title">Image Editor</h3>
+                        <p class="related-tool-desc">Basic editing tools for your images</p>
+                    </a>
+                </div>
+            </section>
         </div>
     </main>
     
@@ -1008,11 +908,11 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <a href="/" class="footer-logo">
-                        <i class="fas fa-compress-alt footer-logo-icon"></i>
-                        <span class="footer-logo-text">ImageCompressorPro</span>
+                        <i class="fas fa-tools footer-logo-icon"></i>
+                        <span class="footer-logo-text">ToolKitPro</span>
                     </a>
                     <p class="footer-about">
-                        Free online tool to compress your images while maintaining quality. Perfect for web developers, designers, and photographers.
+                        Free online tools for images and PDFs. Compress, convert, edit and optimize your files with our easy-to-use web tools.
                     </p>
                     <div class="footer-social">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -1023,39 +923,41 @@
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="footer-heading">Quick Links</h3>
+                    <h3 class="footer-heading">Image Tools</h3>
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/features">Features</a></li>
+                        <li><a href="/image-compressor">Image Compressor</a></li>
+                        <li><a href="/image-converter">Image Converter</a></li>
+                        <li><a href="/image-resizer">Image Resizer</a></li>
+                        <li><a href="/image-editor">Image Editor</a></li>
+                        <li><a href="/background-remover">Background Remover</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">PDF Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="/pdf-compressor">PDF Compressor</a></li>
+                        <li><a href="/pdf-merger">PDF Merger</a></li>
+                        <li><a href="/pdf-splitter">PDF Splitter</a></li>
+                        <li><a href="/pdf-to-jpg">PDF to JPG</a></li>
+                        <li><a href="/pdf-to-word">PDF to Word</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about">About Us</a></li>
                         <li><a href="/blog">Blog</a></li>
-                        <li><a href="/pricing">Pricing</a></li>
                         <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3 class="footer-heading">Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="/help">Help Center</a></li>
-                        <li><a href="/tutorials">Tutorials</a></li>
-                        <li><a href="/api">API Documentation</a></li>
-                        <li><a href="/status">Status</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3 class="footer-heading">Legal</h3>
-                    <ul class="footer-links">
                         <li><a href="/privacy">Privacy Policy</a></li>
                         <li><a href="/terms">Terms of Service</a></li>
-                        <li><a href="/cookies">Cookie Policy</a></li>
-                        <li><a href="/gdpr">GDPR</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p class="copyright">© 2023 ImageCompressorPro. All rights reserved.</p>
+                <p class="copyright">© 2023 ToolKitPro. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1071,6 +973,17 @@
                 mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
                     ? '<i class="fas fa-times"></i>' 
                     : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
             });
             
             // DOM Elements
@@ -1091,7 +1004,6 @@
             // Compressed image elements
             const compressedImg = document.getElementById('compressed-img');
             const compressedSize = document.getElementById('compressed-size');
-            const compressedDimensions = document.getElementById('compressed-dimensions');
             const reduction = document.getElementById('reduction');
             const downloadBtn = document.getElementById('download-btn');
             
@@ -1220,7 +1132,6 @@
                                 
                                 // Display compressed image
                                 compressedImg.src = compressedImageUrl;
-                                compressedDimensions.textContent = `${canvas.width}×${canvas.height}`;
                                 
                                 // Display compressed image info
                                 compressedSize.textContent = (blob.size / 1024).toFixed(2);
@@ -1236,47 +1147,4 @@
                                     ? selectedFile.name.split('.').pop() 
                                     : format;
                                 downloadBtn.href = compressedImageUrl;
-                                downloadBtn.download = `compressed_${selectedFile.name.replace(/\.[^/.]+$/, '')}.${fileExtension}`;
-                                
-                                // Show results
-                                resultsSection.style.display = 'block';
-                                loaderContainer.style.display = 'none';
-                                compressBtn.disabled = false;
-                                
-                                // Scroll to results
-                                resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }, mimeType, compressionSettings);
-                        };
-                        
-                        img.onerror = function() {
-                            showError('Error loading image. Please try another file.');
-                            loaderContainer.style.display = 'none';
-                            compressBtn.disabled = false;
-                        };
-                        
-                        img.src = URL.createObjectURL(selectedFile);
-                    } catch (error) {
-                        showError('An error occurred during compression. Please try again.');
-                        console.error('Compression error:', error);
-                        loaderContainer.style.display = 'none';
-                        compressBtn.disabled = false;
-                    }
-                }, 100);
-            }
-            
-            function showError(message) {
-                errorMessage.textContent = message;
-                errorMessage.style.display = 'block';
-                loaderContainer.style.display = 'none';
-            }
-            
-            // Clean up object URLs when page is unloaded
-            window.addEventListener('beforeunload', () => {
-                if (compressedImageUrl) {
-                    URL.revokeObjectURL(compressedImageUrl);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                                downloadBtn.download = `compressed_${selectedFile.name.replace(/\.[^/.]+$/, '')}.${fileExtension
