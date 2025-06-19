@@ -1147,4 +1147,47 @@
                                     ? selectedFile.name.split('.').pop() 
                                     : format;
                                 downloadBtn.href = compressedImageUrl;
-                                downloadBtn.download = `compressed_${selectedFile.name.replace(/\.[^/.]+$/, '')}.${fileExtension
+                                downloadBtn.download = `compressed_${selectedFile.name.replace(/\.[^/.]+$/, '')}.${fileExtension}`;
+                                
+                                // Show results
+                                resultsSection.style.display = 'block';
+                                loaderContainer.style.display = 'none';
+                                compressBtn.disabled = false;
+                                
+                                // Scroll to results
+                                resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, mimeType, compressionSettings);
+                        };
+                        
+                        img.onerror = function() {
+                            showError('Error loading image. Please try another file.');
+                            loaderContainer.style.display = 'none';
+                            compressBtn.disabled = false;
+                        };
+                        
+                        img.src = URL.createObjectURL(selectedFile);
+                    } catch (error) {
+                        showError('An error occurred during compression. Please try again.');
+                        console.error('Compression error:', error);
+                        loaderContainer.style.display = 'none';
+                        compressBtn.disabled = false;
+                    }
+                }, 100);
+            }
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                loaderContainer.style.display = 'none';
+            }
+            
+            // Clean up object URLs when page is unloaded
+            window.addEventListener('beforeunload', () => {
+                if (compressedImageUrl) {
+                    URL.revokeObjectURL(compressedImageUrl);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
