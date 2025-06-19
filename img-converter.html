@@ -1088,46 +1088,204 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Toggle
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mainNav = document.getElementById('main-nav');
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mainNav = document.getElementById('main-nav');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+        mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    });
+    
+    // DOM Elements
+    const uploadArea = document.getElementById('upload-area');
+    const fileInput = document.getElementById('file-input');
+    const convertBtn = document.getElementById('convert-btn');
+    const qualitySlider = document.getElementById('quality');
+    const qualityValue = document.getElementById('quality-value');
+    const qualityDisplay = document.getElementById('quality-display');
+    const resultsSection = document.getElementById('results');
+    const loaderContainer = document.getElementById('loader-container');
+    const errorMessage = document.getElementById('error-message');
+    
+    // Original image elements
+    const originalImg = document.getElementById('original-img');
+    const originalSize = document.getElementById('original-size');
+    const originalDimensions = document.getElementById('original-dimensions');
+    
+    // Converted image elements
+    const convertedImg = document.getElementById('converted-img');
+    const convertedSize = document.getElementById('converted-size');
+    const convertedFormat = document.getElementById('converted-format');
+    const downloadBtn = document.getElementById('download-btn');
+    
+    // Selected file variable
+    let selectedFile = null;
+    
+    // Update quality display
+    qualitySlider.addEventListener('input', function() {
+        const value = this.value;
+        qualityValue.textContent = value;
+        qualityDisplay.textContent = `${value}%`;
+    });
+    
+    // Handle file selection via click
+    uploadArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+    
+    // Handle drag and drop
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    ['dragenter', 'dragover'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, unhighlight, false);
+    });
+    
+    function highlight() {
+        uploadArea.classList.add('active');
+    }
+    
+    function unhighlight() {
+        uploadArea.classList.remove('active');
+    }
+    
+    // Handle dropped files
+    uploadArea.addEventListener('drop', handleDrop, false);
+    
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+    
+    // Handle selected files
+    fileInput.addEventListener('change', function() {
+        handleFiles(this.files);
+    });
+    
+    function handleFiles(files) {
+        if (files.length === 0) return;
+        
+        const file = files[0];
+        if (!file.type.match('image.*')) {
+            showError('Please select an image file (JPG, PNG, GIF, etc.)');
+            return;
+        }
+        
+        selectedFile = file;
+        
+        // Display original image info
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            originalImg.src = e.target.result;
             
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
-                mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
+            // Get image dimensions
+            const img = new Image();
+            img.onload = function() {
+                originalDimensions.textContent = `${this.width}×${this.height}`;
+            };
+            img.src = e.target.result;
             
-            // Close mobile menu when clicking on a link
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                });
-            });
+            // Display file size
+            originalSize.textContent = (file.size / 1024).toFixed(2);
             
-            // DOM Elements
-            const uploadArea = document.getElementById('upload-area');
-            const fileInput = document.getElementById('file-input');
-            const convertBtn = document.getElementById('convert-btn');
-            const qualitySlider = document.getElementById('quality');
-            const qualityValue = document.getElementById('quality-value');
-            const qualityDisplay = document.getElementById('quality-display');
-            const resultsSection = document.getElementById('results');
-            const loaderContainer = document.getElementById('loader-container');
-            const errorMessage = document.getElementById('error-message');
+            // Enable convert button
+            convertBtn.disabled = false;
             
-            // Original image elements
-            const originalImg = document.getElementById('original-img');
-            const originalSize = document.getElementById('original-size');
-            const originalDimensions = document.getElementById('original-dimensions');
+            // Hide any previous results/errors
+            resultsSection.style.display = 'none';
+            errorMessage.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    // Convert button click handler
+    convertBtn.addEventListener('click', function() {
+        if (!selectedFile) {
+            showError('Please select an image first');
+            return;
+        }
+        
+        // Show loader
+        loaderContainer.style.display = 'block';
+        resultsSection.style.display = 'none';
+        errorMessage.style.display = 'none';
+        
+        // Get selected format
+        const selectedFormat = document.querySelector('input[name="format"]:checked').value;
+        const quality = qualitySlider.value;
+        
+        // Simulate conversion (in a real app, you would do actual conversion here)
+        setTimeout(() => {
+            convertImage(selectedFile, selectedFormat, quality);
+        }, 1500);
+    });
+    
+    function convertImage(file, format, quality) {
+        // In a real application, you would do actual image conversion here
+        // For this example, we'll just simulate it
+        
+        // Hide loader
+        loaderContainer.style.display = 'none';
+        
+        // Set converted image format
+        convertedFormat.textContent = format.toUpperCase();
+        
+        // Create a canvas to simulate conversion
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = this.width;
+            canvas.height = this.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(this, 0, 0);
             
-            // Converted image elements
-            const convertedImg = document.getElementById('converted-img');
-            const convertedSize = document.getElementById('converted-size');
-            const convertedFormat = document.getElementById('converted-format');
-            const downloadBtn = document.getElementById('
+            // Simulate different quality settings
+            let qualityFactor = quality / 100;
+            let simulatedSize = file.size * (1.1 - qualityFactor * 0.5); // Simulate size reduction
+            
+            // Set converted image data
+            convertedImg.src = canvas.toDataURL(`image/${format}`, qualityFactor);
+            convertedSize.textContent = (simulatedSize / 1024).toFixed(2);
+            
+            // Set download button
+            downloadBtn.href = canvas.toDataURL(`image/${format}`, qualityFactor);
+            downloadBtn.download = `converted.${format}`;
+            
+            // Show results
+            resultsSection.style.display = 'block';
+        };
+        img.src = URL.createObjectURL(file);
+    }
+    
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        resultsSection.style.display = 'none';
+        loaderContainer.style.display = 'none';
+    }
+});
