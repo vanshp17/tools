@@ -809,50 +809,189 @@
         </div>
 
         <div class="container">
-            <div class="tool-container">
-                <!-- [Tool container content remains exactly the same] -->
+    <div class="tool-container">
+        <div class="tool-card-header">
+            <i class="fas fa-compress-arrows-alt tool-card-icon"></i>
+            <h2 class="tool-card-title">Compress Your Image</h2>
+        </div>
+        
+        <div class="tool-card-body">
+            <div class="upload-area" id="upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="upload-text">
+                    <h3>Drag & Drop Your Image Here</h3>
+                    <p>or click to browse files (JPG, PNG, WebP)</p>
+                </div>
+                <input type="file" id="file-input" class="file-input" accept="image/*">
             </div>
             
-            <!-- Middle Ad Banner -->
-            <div class="ad-container" style="margin-top: 2rem;">
-                <div class="ad-label">Advertisement</div>
-                <!-- Google AdSense Code -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                     crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Mid_Banner -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                     data-ad-slot="YOUR_AD_SLOT_ID_2"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+            <div class="settings">
+                <div class="setting-group">
+                    <label for="quality" class="setting-label">Compression Level</label>
+                    <div class="slider-container">
+                        <input type="range" id="quality" class="slider" min="10" max="100" value="80" step="1">
+                        <span class="slider-value" id="quality-value">80%</span>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <label class="setting-label">Output Format</label>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <input type="radio" id="format-original" name="format" value="original" checked>
+                            <label for="format-original">Original</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-jpg" name="format" value="jpg">
+                            <label for="format-jpg">JPG</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-png" name="format" value="png">
+                            <label for="format-png">PNG</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-webp" name="format" value="webp">
+                            <label for="format-webp">WebP</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <section class="related-tools">
-                <!-- [Related tools content remains exactly the same] -->
-            </section>
+            <button id="compress-btn" class="btn btn-primary" disabled>
+                <i class="fas fa-compress-alt"></i> Compress Image
+            </button>
             
-            <!-- Bottom Ad Banner -->
-            <div class="ad-container">
-                <div class="ad-label">Advertisement</div>
-                <!-- Google AdSense Code -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                     crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Bottom_Banner -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                     data-ad-slot="YOUR_AD_SLOT_ID_3"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+            <div class="loader-container" id="loader-container">
+                <div class="loader"></div>
+                <p class="loading-text">Processing your image...</p>
+            </div>
+            
+            <div class="error-message" id="error-message"></div>
+            
+            <div class="results" id="results">
+                <h3 class="results-title">Compression Results</h3>
+                
+                <div class="comparison">
+                    <div class="image-card">
+                        <div class="image-container">
+                            <img id="original-img" src="" alt="Original image">
+                        </div>
+                        <div class="image-info">
+                            <h4 class="image-title">Original Image</h4>
+                            <div class="image-stats">
+                                <span class="image-stat">
+                                    <i class="fas fa-weight-hanging"></i>
+                                    <span id="original-size">0</span> KB
+                                </span>
+                                <span class="image-stat">
+                                    <i class="fas fa-expand"></i>
+                                    <span id="original-dimensions">0×0</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="image-card">
+                        <div class="image-container">
+                            <img id="compressed-img" src="" alt="Compressed image">
+                        </div>
+                        <div class="image-info">
+                            <h4 class="image-title">Compressed Image</h4>
+                            <div class="image-stats">
+                                <span class="image-stat">
+                                    <i class="fas fa-weight-hanging"></i>
+                                    <span id="compressed-size">0</span> KB
+                                </span>
+                                <span class="image-stat">
+                                    <i class="fas fa-percentage"></i>
+                                    <span id="reduction">0</span>% smaller
+                                </span>
+                            </div>
+                        </div>
+                        <a href="#" class="download-btn" id="download-btn">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    
+    <!-- Middle Ad Banner -->
+    <div class="ad-container" style="margin-top: 2rem;">
+        <div class="ad-label">Advertisement</div>
+        <!-- Google AdSense Code -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+             crossorigin="anonymous"></script>
+        <!-- ImageCompressor_Mid_Banner -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+             data-ad-slot="YOUR_AD_SLOT_ID_2"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <section class="related-tools">
+        <h2 class="section-title">More Image Tools</h2>
+        <div class="tools-grid">
+            <a href="/image-converter" class="related-tool-card">
+                <div class="related-tool-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3 class="related-tool-title">Image Converter</h3>
+                <p class="related-tool-desc">Convert between JPG, PNG, WebP and other formats</p>
+            </a>
+            
+            <a href="/image-resizer" class="related-tool-card">
+                <div class="related-tool-icon">
+                    <i class="fas fa-crop-alt"></i>
+                </div>
+                <h3 class="related-tool-title">Image Resizer</h3>
+                <p class="related-tool-desc">Resize your images to any dimensions</p>
+            </a>
+            
+            <a href="/background-remover" class="related-tool-card">
+                <div class="related-tool-icon">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <h3 class="related-tool-title">Background Remover</h3>
+                <p class="related-tool-desc">Remove backgrounds from images automatically</p>
+            </a>
+            
+            <a href="/image-editor" class="related-tool-card">
+                <div class="related-tool-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h3 class="related-tool-title">Image Editor</h3>
+                <p class="related-tool-desc">Basic editing tools for your images</p>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Bottom Ad Banner -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <!-- Google AdSense Code -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+             crossorigin="anonymous"></script>
+        <!-- ImageCompressor_Bottom_Banner -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+             data-ad-slot="YOUR_AD_SLOT_ID_3"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
     </main>
     
     <footer>
