@@ -1064,4 +1064,108 @@
                     }
                     
                     // Add file to selected files array
-                    if (!selectedFiles.s
+                    if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                        selectedFiles.push(file);
+                        addFileToList(file);
+                    }
+                }
+                
+                // Enable merge button if we have at least 2 files
+                mergeBtn.disabled = selectedFiles.length < 2;
+                
+                // Hide any previous results/errors
+                resultsSection.style.display = 'none';
+                errorMessage.style.display = 'none';
+            }
+            
+            function addFileToList(file) {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.dataset.filename = file.name;
+                
+                const fileSize = (file.size / 1024).toFixed(2);
+                
+                fileItem.innerHTML = `
+                    <div class="file-info">
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        <div>
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${fileSize} KB</div>
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="file-action-btn" onclick="removeFile('${file.name}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                fileList.appendChild(fileItem);
+            }
+            
+            // Global function for file removal
+            window.removeFile = function(filename) {
+                selectedFiles = selectedFiles.filter(file => file.name !== filename);
+                
+                // Remove from UI
+                const fileItem = document.querySelector(`.file-item[data-filename="${filename}"]`);
+                if (fileItem) {
+                    fileItem.remove();
+                }
+                
+                // Update merge button state
+                mergeBtn.disabled = selectedFiles.length < 2;
+            };
+            
+            // Merge button click handler
+            mergeBtn.addEventListener('click', function() {
+                if (selectedFiles.length < 2) {
+                    showError('Please select at least 2 PDF files to merge');
+                    return;
+                }
+                
+                // Show loader
+                loaderContainer.style.display = 'block';
+                resultsSection.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Simulate merge process
+                setTimeout(() => {
+                    simulateMerge(selectedFiles);
+                }, 2000);
+            });
+            
+            function simulateMerge(files) {
+                // In a real application, you would use a PDF library to merge files
+                // For this example, we'll simulate the merge
+                
+                // Hide loader
+                loaderContainer.style.display = 'none';
+                
+                // Calculate total size and simulate page count
+                const totalFileSize = files.reduce((total, file) => total + file.size, 0);
+                const simulatedPages = files.length * 5; // 5 pages per file
+                
+                // Update result stats
+                totalPages.textContent = simulatedPages;
+                totalSize.textContent = (totalFileSize / 1024).toFixed(2) + ' KB';
+                fileCount.textContent = files.length;
+                
+                // Set download button
+                downloadBtn.href = 'data:application/pdf;base64,simulated';
+                downloadBtn.download = 'merged-document.pdf';
+                
+                // Show results
+                resultsSection.style.display = 'block';
+            }
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                resultsSection.style.display = 'none';
+                loaderContainer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
